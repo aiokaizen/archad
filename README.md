@@ -1,8 +1,32 @@
-# ARChad
+<h1 align="center">ARChad</h1>
+
+<!-- <div align="center"> -->
+<!-- 	<a href="https://nvchad.com/">Home</a> -->
+<!--   <span> • </span> -->
+<!--     	<a href="https://nvchad.com/docs/quickstart/install">Install</a> -->
+<!--   <span> • </span> -->
+<!--        	<a href="https://nvchad.com/docs/contribute">Contribute</a> -->
+<!--   <span> • </span> -->
+<!-- 	<a href="https://github.com/NvChad/NvChad#gift_heart-support">Support</a> -->
+<!--   <span> • </span> -->
+<!--         <a href="https://nvchad.com/docs/features">Features</a> -->
+<!--   <p></p> -->
+<!-- </div>  -->
+
+<!-- <details><summary> <b>Images (Click to expand!)</b></summary> -->
+<!---->
+<!-- ![4 themes](https://nvchad.com/screenshots/four_Themes.webp) -->
+<!-- ![radium 1](https://nvchad.com/screenshots/radium1.webp) -->
+<!-- ![radium 2](https://nvchad.com/screenshots/radium2.webp) -->
+<!-- ![radium 3](https://nvchad.com/screenshots/radium3.webp) -->
+
+
+(Note: these are just 4-5 themes, NvChad has around 56 themes)
+</details>
 
 This is my personal nvim setup built on top of [NVChad](https://github.com/NvChad/NvChad/tree/v2.0).
 
-## How to use
+## Setup
 
 To install this for your neovim configuration
 
@@ -67,3 +91,7 @@ Install all Mason dependancies:
 :MasonInstallAll
 ```
 
+## Commands
+
+We will state only the changes from NVChad defaults. To see all the default options
+refer to the [NVChad Documentation]()

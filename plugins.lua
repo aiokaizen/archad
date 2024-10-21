@@ -82,5 +82,58 @@ local plugins = {
       return require "custom.configs.telescope"
     end,
   },
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  --   init = function()
+  --     require("core.utils").load_mappings "nvimtree"
+  --   end,
+  --   opts = function()
+  --     local opts = require "plugins.configs.nvimtree"
+  --     -- opts.filters.custom = {
+  --     --   "node_modules",
+  --     --   ".git",
+  --     --   ".*~",
+  --     -- }
+  --     return opts
+  --   end,
+  --   config = function(_, opts)
+  --     dofile(vim.g.base46_cache .. "nvimtree")
+  --     require("nvim-tree").setup(opts)
+  --   end,
+  -- },
+  {
+    "karb94/neoscroll.nvim",
+    event = "BufWinEnter", -- Load on entering a buffer
+    config = function()
+      require "custom.configs.neoscroll"
+    end
+  },
+  {
+    "folke/zen-mode.nvim",
+    event = "BufWinEnter", -- Load on entering a buffer
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "mfussenegger/nvim-dap",
+      "mfussenegger/nvim-dap-python", --optional
+      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+    },
+    lazy = false,
+    branch = "regexp", -- This is the regexp branch, use this for the new version
+    config = function()
+      require("venv-selector").setup()
+    end,
+    keys = {
+      { ",v", "<cmd>VenvSelect<cr>" },
+    },
+  },
 }
 return plugins
