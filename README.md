@@ -9,7 +9,7 @@ To install this for your neovim configuration
 
 ### 1. Download neovim
 
-If you don't have it already, you should download nvim.
+If you don't have it already, you should download neovim.
 
 ``` bash
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
@@ -19,7 +19,7 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz
 
 You can change the version of nvim depending on your architecture.
 
-You can find different versions and architectures in [NewVIM releases page](https://github.com/neovim/neovim/releases)
+You can find different versions and architectures in [NeoVIM releases page](https://github.com/neovim/neovim/releases)
 
 
 ### 2. Clone NVChad
@@ -30,6 +30,12 @@ We will be using NVChad v2.0 for this setup.
 # If you alrady have another nvim configuration installed, make sure to back it up in case
 # you want to roll back the changes.
 mv ~/.config/nvim ~/.config/nvim.back
+
+# Clean nvim environment
+rm -rf ~/.local/state/nvim
+rm -rf ~/.local/share/nvim
+
+# Clone NVChad repo
 git clone -b v2.0 https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 ```
 

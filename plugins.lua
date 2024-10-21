@@ -79,7 +79,6 @@ local plugins = {
   {
     "nvim-telescope/telescope.nvim",
     opts = function()
-      -- return require "plugins.configs.telescope"
       return require "custom.configs.telescope"
     end,
   },
