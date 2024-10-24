@@ -1,5 +1,12 @@
 local M = {}
 
+M.general = {
+  n = {
+    ["<A-j>"] = { "<C-E>", "Scroll down one line" },
+    ["<A-k>"] = { "<C-Y>", "Scroll up one line" }
+  }
+}
+
 M.dap = {
   plugin = true,
   n = {

@@ -135,5 +135,38 @@ local plugins = {
       { ",v", "<cmd>VenvSelect<cr>" },
     },
   },
+  {
+    'anuvyklack/pretty-fold.nvim',
+    event = "BufWinEnter", -- Load on entering a buffer
+    config = function()
+      require('pretty-fold').setup()
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "custom.configs.treesitter"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+  -- {
+  --   'RRethy/vim-illuminate',
+  --   config = function()
+  --     require('illuminate').configure({
+  --       providers = {
+  --         'lsp',
+  --         'treesitter',
+  --         'regex',
+  --       },
+  --       -- You can add more configuration options here if needed
+  --     })
+  --   end,
+  -- }
 }
 return plugins

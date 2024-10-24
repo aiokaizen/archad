@@ -15,5 +15,12 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = {"python"},
+    settings = {
+      python = {
+        analysis = {
+          typeCheckingMode = "basic", -- Set the type checking mode (off, basic, strict)
+        },
+      },
+    },
   })
 end
