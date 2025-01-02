@@ -95,3 +95,15 @@ Install all Mason dependancies:
 
 We will state only the changes from NVChad defaults. To see all the default options
 refer to the [NVChad Documentation]()
+
+### Find and replace project wide.
+
+1. Find files and add them to the QuickFix list. To do that, you can can either:
+
+    - Use telescope: search for the word you want, and press <CTR>Q
+    - Use another search tool like vimgrep, rg, or grep (e.g. vimgrip /pattern/ path/to/files.txt)
+
+2. Execute the `cfdo` command:
+```
+    :cfdo %s/old_pattern/new_pattern/g
+```

@@ -155,18 +155,14 @@ local plugins = {
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
-  -- {
-  --   'RRethy/vim-illuminate',
-  --   config = function()
-  --     require('illuminate').configure({
-  --       providers = {
-  --         'lsp',
-  --         'treesitter',
-  --         'regex',
-  --       },
-  --       -- You can add more configuration options here if needed
-  --     })
-  --   end,
-  -- }
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufWinEnter", -- Load on entering a buffer
+    config = function(_, opts)
+      require('treesitter-context').setup({
+        enable = true,
+      })
+    end
+  },
 }
 return plugins
