@@ -48,9 +48,39 @@ local plugins = {
     end,
   },
   {
+    'anuvyklack/pretty-fold.nvim',
+    event = "BufWinEnter", -- Load on entering a buffer
+    config = function()
+      require('pretty-fold').setup()
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
+    build = ":TSUpdate",
+    opts = function()
+      return require "custom.configs.treesitter"
+    end,
+    config = function(_, opts)
+      dofile(vim.g.base46_cache .. "syntax")
+      require("nvim-treesitter.configs").setup(opts)
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufWinEnter", -- Load on entering a buffer
+    config = function(_, opts)
+      require('treesitter-context').setup({
+        enable = true,
+      })
+    end
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "lua-language-server",
         "black",
         "debugpy",
         "mypy",
@@ -155,14 +185,18 @@ local plugins = {
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
-  {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "BufWinEnter", -- Load on entering a buffer
-    config = function(_, opts)
-      require('treesitter-context').setup({
-        enable = true,
-      })
-    end
-  },
+  -- {
+  --   'RRethy/vim-illuminate',
+  --   config = function()
+  --     require('illuminate').configure({
+  --       providers = {
+  --         'lsp',
+  --         'treesitter',
+  --         'regex',
+  --       },
+  --       -- You can add more configuration options here if needed
+  --     })
+  --   end,
+  -- }
 }
 return plugins
