@@ -124,6 +124,7 @@ local plugins = {
         ".*~",
         "__pycache__",
         ".mypy_cache",
+        ".ruff_cache",
         ".null-ls*",
       }
       return opts
