@@ -56,16 +56,13 @@ local plugins = {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    opts = function()
-      return require "custom.configs.treesitter"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    opts = {
+      ensure_installed = {
+        "lua", "vim", "vimdoc", "toml", "yaml",
+        "python", "javascript", "scss", "rust",
+        "html", "css", "rst", "json", "dockerfile"
+      }
+    }
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -73,6 +70,8 @@ local plugins = {
     config = function(_, opts)
       require('treesitter-context').setup({
         enable = true,
+        multiline_threshold = 1,
+        max_lines = 5,
       })
     end
   },
@@ -108,30 +107,28 @@ local plugins = {
   },
   {
     "nvim-telescope/telescope.nvim",
-    opts = function()
-      return require "custom.configs.telescope"
+    opts = function(_, conf)
+      conf.defaults.mappings.i = {
+        ["<C-k>"] = require("telescope.actions").move_selection_previous, -- move to prev result
+        ["<C-j>"] = require("telescope.actions").move_selection_next,     -- move to next result
+      }
+      return conf
     end,
   },
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-  --   init = function()
-  --     require("core.utils").load_mappings "nvimtree"
-  --   end,
-  --   opts = function()
-  --     local opts = require "plugins.configs.nvimtree"
-  --     -- opts.filters.custom = {
-  --     --   "node_modules",
-  --     --   ".git",
-  --     --   ".*~",
-  --     -- }
-  --     return opts
-  --   end,
-  --   config = function(_, opts)
-  --     dofile(vim.g.base46_cache .. "nvimtree")
-  --     require("nvim-tree").setup(opts)
-  --   end,
-  -- },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = function(_, opts)
+      opts.filters.custom = {
+        "node_modules",
+        ".git",
+        ".*~",
+        "__pycache__",
+        ".mypy_cache",
+        ".null-ls*",
+      }
+      return opts
+    end,
+  },
   {
     "karb94/neoscroll.nvim",
     event = "BufWinEnter", -- Load on entering a buffer
@@ -171,19 +168,6 @@ local plugins = {
     config = function()
       require('pretty-fold').setup()
     end
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
-    build = ":TSUpdate",
-    opts = function()
-      return require "custom.configs.treesitter"
-    end,
-    config = function(_, opts)
-      dofile(vim.g.base46_cache .. "syntax")
-      require("nvim-treesitter.configs").setup(opts)
-    end,
   },
   -- {
   --   'RRethy/vim-illuminate',
